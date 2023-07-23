@@ -1,0 +1,588 @@
+---
+title: "Introdução à linguagem R e ao RStudio"
+author: "Jonas Arjona"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Preliminares
+
+Antes de iniciar o curso é importante que vocês alunos sigam algumas etapas. A primeira delas é responder o forms abaixo para eu conhecer um pouco de vocês e modular o conteúdo/roteiro dos nossos encontros. Nele pergunto sobre os conhecimentos prévios em programação e seus objetos de pesquisa. O ideal seria algum dos objetos servir de fonte de dados para trabalharmos em aula. As respostas são anônimas.
+
+- [Acesse o forms aqui!]()
+
+A segunda etapa é seguir o tutorial abaixo de instalação do R e do RStudio. São dois programas diferentes, mas bem simples de serem instalados. Elaborei um tutorial próprio no Windows, mas também é possível instalar no Mac e no Linux. Os tutoriais para estes dois últimos são de terceiros.
+
+- [Tutorial Windows](https://drive.google.com/file/d/1DoHh0yICeu2-NnSndg22dYqCCdi7FP42/viewhttps://drive.google.com/file/d/1DoHh0yICeu2-NnSndg22dYqCCdi7FP42/view)
+
+- [Tutorial Mac](https://www.youtube.com/watch?v=rr54DqsJJjY)
+
+- [Tutorial Linux](https://www.youtube.com/watch?v=L01y0W7rnnA)
+
+Disponibilizo também dois livros sobre a linguagem e a interface RStudio. O de Aquino é um pouco datado mas ainda funciona e está em português. O de Wickham é super recente (atualizado em junho de 2023), possui exercícios e é gratuito, mas está em inglês. Usem ambos para consultas e/ou aprofundar os estudos.
+
+- ["R para cientistas sociais" por Jakson Aquino](https://drive.google.com/file/d/14dclrDG0kV6ZuW0fJQxSgjXnHGsuVcWi/view)
+
+- ["R for Data Science" por Hadley Wickham e colegas](https://r4ds.hadley.nz/)
+
+Por fim, disponibilizo aqui um glossário de termos usados no roteiro, scripts e durante as aulas. Ele é passível de expansão tanto por mim quanto por vocês (caso haja demanda).
+
+- [Acesse o glosário aqui!](https://docs.google.com/document/d/1Tewif9K5ZXFJfRe-3InCMk-HN401ilslLPvyvn6xpsE/edit?usp=sharing)
+
+Esta página e o material aqui usado estarão sempre disponível aos alunos e podem ser consultados novamente e compartilhados.
+
+Aproveitem!
+
+# Primeiro encontro (06/09)
+
+## Introdução
+
+::: {style="display: flex;"}
+<div>
+
+Neste curso, iremos nos familiarizar com a linguagem R e a interface RStudio. Não iremos exaurir todas as possibilidades, mas apenas introduzir de maneira geral noções básicas de programação para fins acadêmicos. Num segundo momento, cursos mais específicos serão ofertados focados em análise textual e análise estatística, os quais serão melhor aproveitados após o primeiro contato com a linguagem.
+
+A linguagem R foi criada no próprio meio acadêmico por estatísticos. Logo, ela já nasce no nicho de nosso interesse. RStudio é uma interface que roda a linguagem R original, mas nos oferece vários artifícios gráficos mais intuitivos do que a linguagem original. Hoje, o RStudio passa por um rebranding e se tornou Posit, uma interface multi-tarefas de programação mais ampla.
+
+</div>
+
+<div>
+
+![](imagens/logo.png)
+
+</div>
+:::
+
+## A interface e suas abas
+
+A interface possui quatro painéis. No (1) temos o editor de texto, um arquivo onde escrevemos nossos scripts e salvamos num arquivo a parte. No (2) temos o console, um espaço destinado a executação dos comandos. No (3) temos o "enviroment", espçoa onde ficam expostos todos os objetos criados na sessão atual. No (4) temos um painel multifuncional, onde ficam visualizações criadas, arquivos localizados na área de trabalho/enviroment selecionado (mais disso em outro momento ou consultando o glossário), entre outras funções (carinhosamente apelidado de "painel de resto").
+
+A diferença entre o editor de texto (1) e o console (2) é bem simples: o primeiro é um arquivo a ser salvo na máquina do usuário, passível de ser executado múltiplas vezes e compartilhado (no formato ".R"); o segundo apenas recebe comandos, não sendo possível salvá-lo para re-execução.
+
+Além dessas quatro telas, temos também a barra de ferramentas no alto da página (5). Nela, temos opções tradicionais de todos os programas de computadores. Para nosso caso, as abas "Tools" e "Help são as mais importantes. Na primeira temos a subopção"Global Options", que serve para configurar o software. Na segunda temos acesso as "cheatsheets", (as "colinhas"), e ao "Keyboard Shortcut Help", uma lista de atalhos no teclado.
+
+![](imagens/interface.png)
+
+## Primeiras linhas de código
+
+Iremos escrever nossas primeiras linhas de código no editor de texto, para mantê-las salvas. A função mais primária do R é a de uma calculadora. Abaixo temos alguns cálculos matemáticos.
+
+### {.tabset .unlisted .unnumbered}
+
+#### Operações simples
+
+```{r}
+1+1
+4-2
+2*5
+100/10
+```
+
+#### Potência
+
+```{r}
+10^2 
+2^2
+```
+
+#### Múltiplas operações
+
+```{r}
+(2+2)*100
+```
+
+#### Porcentagem
+
+```{r}
+((2+5+7+9+3+11+2)/39)*100
+((2+5+7+9+3)/39)*100
+```
+
+#### Média
+
+```{r}
+(2+5+7+9+3+11+2)/7
+```
+
+## {.unlisted .unnumbered}
+
+Notem como os comandos são escritas e aninhados. Usamos parênteses para separar processos. No caso da média, por exemplo, a parte da soma do cálculo é toda contida dentro de um parênteses, para em seguida esse resultado ser dividido por 7 (o número de elementos somados). É um processo muito semelhante ao ordenamento de operações na matemática convencional.
+
+Também podemos fazer comparações usando de operadores lógicos, sinais matemáticos que avaliam se uma determinada condição é verdadeira ou falsa. Abaixo temos uma lista retirada de [Aquino (2014)](https://drive.google.com/file/d/14dclrDG0kV6ZuW0fJQxSgjXnHGsuVcWi/view) de alguns operadores convencionais da área e alguns exemplos. Podemos amontoar múltiplas comparações usando operadores entre duas ou mais comparações.
+
+![](imagens/operadores.png)
+
+### {.tabset .unlisted .unnumbered}
+
+#### Comparações simples
+
+```{r}
+2 == 3
+3 == 3
+(9/3) == 3
+4 != 5
+7 != 7
+5 < 9
+11 > 9
+```
+
+#### Comparações complexas
+
+```{r}
+2 == 3 & 3 == 3
+3 == 3 & 9/3 == 3
+```
+
+#### Comparações de condicionais
+
+```{r}
+#T & F = F 
+T == T & T == F 
+#F & F = F
+T == F & T == F 
+#T | F = T
+T != F | T != T 
+#F | F = F
+T == F | F != F 
+
+```
+
+## {.unlisted .unnumbered}
+
+Percebam como na última aba eu faço uso de hashtags (#) nos códigos. O R não interpreta tudo que vem depois de uma hashtag, logo é comum, além de uma boa prática, usar do caractére para comentar o código, como fizemos acima.
+
+## Funções
+Apesar de ser possível de executar cálculos e outros procedimentos dessa forma, a maiga do R vem das funções, comandos que executam processos pré-definidos usando de argumentos. Elas funcionam de forma muito semelhante a funções do Excel ou até funções matemáticas, sendo necessário chamarmos seus nomes, abrirmos parênteses, oferecermos os argumentos obrigatórios e/ou opcionais e finalmente fecharmos os parênteses.
+
+Abaixo temos a função *seq*, que cria sequências numéricas. Ela tem como argumentos obritatórios: "from", que define um ponto de partido da sequência; e "to", que define o ponto de chegada da sequência. Há outros argumentos opcionais que podem limitar a unidade de contagem ("by") e o tamanho da sequência ("length.out").
+
+```{r}
+seq(from = 100, to = 125)
+```
+
+Podemos escrever manualmente o nome do argumento seguido de "=" e o valor que queremos dar pra ele ou ainda só escrever o valor no lugar que a função espera que esteja este argumento. Por exemplo, em *seq* o primeiro argumento é o "from" e o segundo o "to". Se rodarmos o código abaixo veremos que o resultado é o mesmo de antes. Memorizar a posição dos argumentos nem sempre é uma boa ideia. É preferível saber quais os argumentos e os seus nomes.
+
+```{r}
+seq(100,125)
+```
+
+O R permite o encadeamento de funções e processos, ou seja, o resultado de uma função pode ser passado à uma outra *ad infinitum*. Só precisamos no atentar com o fecharmos e abrir dos parênteses. Abaixo pegamos nosso objeto de sequência criado acima, somamos os números com 10 e só depois dividimos por 100.
+
+```{r}
+(seq(100,125)+10)/100
+```
+
+Caso não tívemos usado os parênteses, o resultado seria diferente, como ocorre abaixo.
+
+```{r}
+seq(100,125)+10/100
+```
+
+Para consultar os argumentos de uma função, digite "?" seguido do nome da função. Uma janela irá abrir no painel multifunção  (canto inferior direito), com infos da função, os argumentos e até alguns exemplos de código.
+
+```{r,eval=FALSE}
+?seq
+```
+
+![](imagens/doc-seq.png)
+
+## Objetos unidimensionais
+A criação de objetos em R é bem simples. Damos um nome ao objeto (que não pode conter espaços e nem começar com números), utilizamos o operador de associação *<-* (sinal de "menor que" seguido de um hífen) e oferecemos o conteúdo do objeto. No caso abaixo nós criamos um objeto com quatro elementos (neste caso, letras), o que implica a necessidade de usar a função *c()*, de concatenar. Para consultarmos o objeto, basta digitarmos seu nome e rodarmos o código.
+
+Chamamos eles de unidimensionais porque eles armazenam as informações em formato "de linha", sempre contendo apenas um tipo de dado. Essa caracterização ficará mais evidente quando tratarmos dos objetos multidimensionais.
+
+### {.tabset .unlisted .unnumbered}
+
+#### Objetos com letras
+```{r}
+objeto <- c("a","b","c","d")
+objeto
+```
+
+#### Objetos com números
+```{r}
+objeto_numero <- c(3,4,1,2)
+objeto_numero
+```
+
+## {.unlisted .unnumbered}
+
+Percebam como para o objeto com letras (texto), cada elemento precisa estar fechado em aspas, enquanto que para o objeto com números isso não ocorre. O R não interpreta elementos de texto sem aspas, por isso o objeto abaixo que combina letras e números nos oferece um erro. Na aba seguinte temos a versão correta desse objeto.
+
+### {.tabset .unlisted .unnumbered}
+
+#### Letras e números (errado)
+
+```{r, error=TRUE}
+objeto_misto <- c(a,5,b,9,c,1)
+```
+
+#### Letras e números (correto)
+
+```{r}
+objeto_misto <- c("a",5,"b",9,"c",1)
+objeto_misto
+```
+
+## {.unlisted .unnumbered}
+
+Também podemos ainda apenas solicitar um *print* dos dois objetos separados criados antes. Percebam como o R, na impressão, coloca aspas em todos os elementos. Isso ocorre porque é impossível criar um objeto unidimensional (mais sobre isso adiante) com múltiplos tipos de dados (números, letras, booleanos, etc.).
+
+```{r}
+print(c(objeto,objeto_numero))
+```
+
+Podemos criar sequências de números usando alguns estratégias. Primeiro, usando o carácter de dois pontos(":"), oferecemos um número de partida a esquerda, de chegada a direita e amarramos tudo dentro da função *c*. Outra forma seria usando a função *seq*, já mencionada antes aqui: oferecemos um número de partida (from), um de chegada (to) e a unidade do incremento da sequência (by).
+
+```{r}
+sequencia <- c(1:10)
+sequencia
+
+sequencia_par <- seq(from = 0, to = 10, by = 2)
+sequencia_par
+```
+
+Esses objetos numéricos podem ser usados em cálculos matemáticos. Basta digitarmos o nome do objeto e a opreção que desejamos aplicar. O resultado é a aplicação do cálculo para cada elemento do objeto.
+
+```{r}
+objeto_numero+2
+sequencia_par+5
+```
+
+## Tipos de dados
+A linguagem R suporta uma variedade de tipos de dados. O que os diferencia é o tipo de processos/funções que são aplicáveis a cada um deles. Não é por acaso os tipos são muito semelhantes àqueles usados nas clássicas definições metodológicas (quanti/quali,categórico,nominal,ordinal, etc). Para consultarmos a classe de um objeto usamos a função *class*.
+
+### {.tabset .unlisted .unnumbered}
+
+#### Character (texto)
+Qualquer tipo de texto, inclusive números declarados como texto.
+```{r}
+objeto_character <- c("ave","cachorro","gato")
+objeto_character
+
+class(objeto_character)
+```
+
+#### Factor (categoria)
+Texto transformado em categoria. Diferente do character, os factors impedem a entrada de dados que não apresentem valores listados no conjunto de valores permitidos. Para consultar os valores permitidos, usamos a função *levels*
+```{r}
+objeto_factor <- factor(c("muito","normal","pouco"))
+objeto_factor
+
+class(objeto_factor)
+
+levels(objeto_factor)
+```
+
+#### Numeric (número)
+Valores numéricos usados em cálculos matemáticos.
+```{r}
+objeto_numeric <- c(1.3,2,4.9,7.2,9.5)
+
+class(objeto_numeric)
+
+objeto_numeric+2
+```
+
+#### Logical (booleano/binário)
+Verdadeiros (T, TRUE) e falsos (F, FALSE).
+```{r}
+objeto_logical <- c(T,F,T,T,F,F)
+objeto_logical
+
+class(objeto_logical)
+```
+
+## {.unlisted .unnumbered}
+
+É possível converter os dados entre os diferentes tipos, porém é preciso cautela porque nem toda conversão é automaticamente compatível e acaba gerando perda de informações.
+
+As funções que fazem conversões são as que começando com o prefixo *as.*. Abaixo temos alguns exemplos das conversões e dos resultados após.
+
+### {.tabset .unlisted .unnumbered}
+
+#### Character para factor (e vice-versa)
+```{r}
+as.factor(objeto_character)
+class(as.factor(objeto_character))
+
+as.character(objeto_factor)
+class(as.character(objeto_factor))
+```
+
+#### Numeric para character
+```{r}
+as.character(objeto_numeric)
+class(as.character(objeto_numeric))
+```
+
+#### Factor para numeric
+```{r}
+as.numeric(objeto_factor)
+class(as.numeric(objeto_factor))
+```
+
+#### Logical para character ou numeric
+```{r}
+as.character(objeto_logical)
+class(as.character(objeto_logical))
+
+as.numeric(objeto_logical)
+class(as.numeric(objeto_logical))
+```
+
+
+## {.unlisted .unnumbered}
+
+## Índices
+Todo elemento de um objeto possui um índice, um lugar específico dentro daquele objeto. Caso chamemos o objeto junto com um índice, recuperaremos apenas o(s) elemento(s) respectivo(s) daquele índice. A melhor analogia é a de uma cadeira enumerada dentro de uma sala: apenas uma pessoa senta numa cadeira, logo há apenas um nome num determinado lugar.
+
+Para referenciar um índice usamos o nome do objeto, seguido de colchetes e o número do índice desejado. Podemos também selecionar múltiplos índices usandoos dois pontos (":"). Abaixo temos alguns exemplos com os nossos objetos criados até então. 
+
+```{r}
+objeto_character[3]
+
+objeto_factor[1]
+
+objeto_numeric[1:4]
+
+objeto_logical[4:6]
+```
+
+## {.unlisted .unnumbered}
+
+## Objetos multidimensionais
+Objetos multidimensionais são aqueles que armazenam mais de um objeto unidimensional (como aqueles criados e estudados nas seções acima). Temos vários tipos deles, mas os que estão presentes no R base são: as matrizes, as listas e os data frames.
+
+### Matrizes (matrix)
+Matrizes em R são como as suas homônimas em matemática: um conjunto de números armazenados em linhas e colunas. Elas se assemelham em muito com tabelas em Excel e afins. Nem sempre usamos elas, já que os data frames são muito semelhantes e mais versáteis para manipular, mas é comum nos depararmos com elas em análises estatísticas (como matrizes de correlação). Estes objetos armazenam apenas objetos do mesmo tipo (todos números, todos texto, etc).
+
+```{r}
+matrix(data=c(1,2,3,4,5,6,7,8,9),nrow=3,ncol=3)
+```
+
+### Listas (list)
+Listas são objetos que armazenam outros objetos de tamanhos e tipos distintos. Uma lista pode conter uma matriz de 500 por 500, junto com um objeto character de um só elemento, um objeto numeric com múltiplos valores e um data.frame com centenas de linhas e colunas.
+
+```{r}
+list(x=list("a",c(1,2,3),"c"),
+     y=list(T,F,c("a","b")),
+     z=list("teste1","teste2",c(T,F,T)))
+
+```
+
+
+A melhor analogia é de um gabinete de escritório: um gabinete tem múltiplas gavetas, todas com números diferentes de pastas; estas armazenam diferentes documentos, de diferentes tamanhos e funcionalidades.
+
+![](imagens/exemplo_gabinete.png)
+
+Listas têm seus usos em casos específicos. Um deles são em regressões: o resultado de um cálculo de uma regressão em R (usando a função *lm*, por exemplo) são múltiplos valores. Temos R², resíduos, matrizes de correlação, coeficientes, equação inicial (y=a+bx+u), todos de tipos e tamanhos diferentes.
+
+### Data frame
+Data frames são versões melhoradas de matrizes, já que também trabalham com linhas e colunas, mas eles permitem o armazenamento de múltiplos tipos de dados em cada uma das colunas. Por exemplo, temos o objeto abaixo que possui dados de alunos e comidas (textos ou factors), presença (booleano/lógico) e idade (numérico). Nele, manualmente preenchemos as colunas usando a função *c* e separamos cada coluna usando uma vírgula (",").
+
+```{r}
+data.frame(alunos=c("matheus","carlos","bossa","gustavo"),
+           comida_preferida=c("macarronada","salgadinho","bolacha","churrasco"),
+           presenca=c(T,T,F,T),
+           idade=c(14,18,20,47))
+```
+
+Para facilitar a leitura, após cada coluna eu pressiono a tecla "Enter" para descer uma linha. O R não lê esse Enter e nem espaços ou tabs (na maioria dos contextos), logo usamos disso para tornar nosso código mais organizado. Mesmo assim, posso escrever tudo numa só linha sem problema alguma.
+
+```{r}
+data.frame(alunos=c("matheus","carlos","bossa","gustavo"),comida_preferida=c("macarronada","salgadinho","bolacha","churrasco"),idade=c(14,18,20,47))
+```
+
+Grande parte da atuação com R para análise de dados e mesmo desenvolvimento de estudos em outros objetos de pesquisa usa muito dos data.frames e suas particularidades. Por isso dedicaremos mais tempo para eles.
+
+## Mais sobre data.frames
+
+Como fica aparente, um data.frame é uma junção de vários objetos unidimensionais, o que significa que também podemos criá-los combinandos esses objetos, como fazemos abaixo. Há algumas limitações sobre o tamanho dos objetos, mas se tratam de casos mais específicos que não convém referenciar aqui.
+
+```{r}
+alunos <- c("maria","joao","caio","matheus")
+portugues <- c(4,7,9,10)
+
+data.frame(alunos,portugues)
+```
+
+Podemos ttambém misturar abordagens, combinando objetos com dados inseridos dentro da função *data.frame*.
+
+```{r}
+data.frame(alunos,portugues,faltas=c(1,2,3,4))
+```
+
+Ou ainda atribuir um mesmo valor para todas as observações.
+
+```{r}
+data.frame(alunos,portugues,faltas=1)
+```
+
+Também podemos usar, dentro da prória função, objetos para gerar outras colunas. No exemplo abaixo temos um objeto com notas em português de alunos e a nota final na disciplina após a soma de um ponto extra.
+
+```{r}
+data.frame(alunos,portugues,nota_com_ponto_extra=portugues+1)
+```
+
+Se vocês notarem no enviroment não há nenhum objeto data.frame. Isso porque não criamos um objeto, apenas visualizações dele. Para criar e armazenar usamos o já mencionado operador de associação *<-*. Podemos então referenciar ele em outros processos.
+
+```{r}
+df <- data.frame(alunos,portugues,faltas=c(1,2,3,4))
+df
+```
+
+Da mesma forma que com outros objetos, índices podem ser usados em data.frames, mas com uma leve diferença. Dado que temos linhas e colunas, ao usar índices aqui precisamos fornecer valores tanto para linhas quanto para colunas. Fazemos do mesmo jeito que antes, com colchetes, escrevendo o número das linhas primeiro, seguido de uma vírgula e o número das colunas. Um exemplo.
+
+```{r}
+df[1,1:3]
+```
+
+Há, porém, uma exceção. Quando queremos todas as linhas ou colunas podemos simplesmente deixar o respectivo espaço destinado para linhas ou colunas dentro dos colchetes vazio. O R entende assim que queremos todas as linhas ou colunas.
+
+```{r}
+df[,1]
+df[1,]
+df[1:3,]
+df[,1:3]
+```
+
+Se combinarmos a função *c* com índices, é possível extrair linhas e colunas em qualquer ordem. No caso abaixo, pegamos as linhas 2 e 3 (nesta ordem) e as colunas 2 e 1 (também nesta ordem).
+
+```{r}
+df[c(2,3),c(2,1)]
+```
+
+Por fim, é possível criar um objeto que conterá números que atuará como um índice dentro de colchetes. Fazemos isso quando iremos fazer uma seleção de linhas e colunas muitas vezes. Uma outra justificativa a ser visto mais para frente é usar esse objeto-índice para filtar nossa tabela/data.frame.
+
+```{r}
+indice <- c(1,3)
+#todas as linhas das colunas 1 e 3
+df[,indice]
+
+#todas as colunas da linha 1 e 3
+df[indice,]
+
+#linhas 1 e 3 das colunas 1 e 3
+df[indice,indice]
+```
+
+## Salvando
+
+Há dois tipos de "save" em R: salvar script e salvar o enviroment. Toda vez programamos por um tempo e que formos fechar o programa ele pergunta se queremos executar um desses "save": "document" para o script; "workspace image" para enviroment.
+
+Salvar o script salva tudo aquilo que foi escrito no editor de texto ao clicarmos no disquete, como mostra a imagem abaixo. Também podemos rapidamente fazer isso pressionando o botão Control  e a letra S (Ctrl+S). O resultado é um arquivo em formato ".R".
+
+Salvar o enviroment salva todos os objetos contidos no enviroment (o painel 3). Normalmente usamos essa opção para pausar uma análise e continuar em outro momento ou caso os processos executados com os dados forem muito complexos e demorados de serem feito, gerando uma economia de tempo. O resultado é um arquivo em formato ".RData".
+
+## Precisa de ajuda?
+
+Uma primeira forma de resolver um problema é consultando tanto a documentação da(s) função(ões) usadas como do pacote-pai desta(s). Para consultar a documentação de uma função espefícica, digite "?" seguido do nome da função e rode, como já fizemos acima.
+
+```{r,eval=FALSE}
+?paste
+```
+
+Para buscar a documentação do pacote procure por "nome-do-pacote cran documentation pdf" no Google. Todo pacote é obrigado a oferecer esse documentação no CRAN (repositório de pacotes). Abaixo temos o documento para o "stringr".
+
+::: {style="display: flex;"}
+
+<div>
+![](imagens/stringr_pesq.png)
+</div>
+
+<div>
+![](imagens/stringr_cran.png)
+</div>
+
+:::
+
+Por fim, usem o Google. Procure o pacote da função, até a própria função ou ainda algo que você gostaria de fazer no Google para consultar vídeos no YouTube de tutoriais ou posts no StackOverFlow, um "yahoo respostas" referente à programação no geral. Lmebre-se de colocar "in r"/"no r" nas suas buscas, já que é muito fácil acabar caindo em algum post de outra linguagem de programação.
+
+## Exercícios
+
+### {.tabset .unlisted .unnumbered}
+
+#### Questões
+
+1. Crie um data.frame contendo dados fictícios. Coloque ao menos 6 linhas com: nome, cor favorita, idade e se possui alguma animal de estimação (booleano).
+
+2. Extraia apenas nome e animal de estimação usando índices.
+
+3. Extraia apenas as observações 3,4,5 usando índices.
+
+4. (Desafio) Escolha aleatoriamente duas linhas dos dados e extraia todas as informações de ambas do nosso data.frame.
+
+- __Dica: primeiro precisamos armazenar os respectivos índices em um objeto separado e depois usar de índices para fazer a extração dos respectivos dados.__
+
+5. (Desafio) Você gostaria de saber quantas horas cada uma das pessoas do data.frame tem de vida. Para isso, você precisa primeiro saber quantos dias cada pessoa tem e em seguida quantas horas. Faça esse cálculo.
+
+- __Dica: você precisará usar índices para selecionar apenas as idades, para em seguida multiplicá-las por 365 dias e o resultado disso multiplicar por 24 horas.__
+
+6. (Desafio) Adicione uma nova coluna que contenha o time de futebol chamada *time* que contenha o time de cada uma das pessoas. Extraia então usando índices o nome e o time.
+
+- __Dica: vimos que é possível criar um data.frame combinando objetos e escrevendo manualmente os dados. Também é possível fazer o mesmo com um data.frame já existente. Para isso, pensem em como fizemos isso no exemplo das faltas usado acima. Lembrem-se de que se não usarmos o operador de associação o objeto não é salvo e não pode ser referenciado.__
+
+#### Soluções
+
+1.
+```{r}
+dados <- data.frame(nome=c("caio","joão","camila","bruna","denis","joselito"),
+                    cor=c("azul","vermelho","amarelo","azul","azul","amarelo"),
+                    idade=c(18,26,30,13,49,58),
+                    animal_de_estimacao=c(T,T,F,T,F,F))
+```
+
+2.
+```{r}
+dados[,c(1,4)]
+```
+
+3.
+```{r}
+dados[3:5,]
+```
+
+4.
+```{r}
+nomes <- c(2,4)
+
+dados[nomes,]
+```
+5. 
+```{r}
+(dados[,3]*365)*24
+```
+
+6.
+Há duas formas (por enquanto) de fazer a inserção de uma nova coluna. Podemos escrever os times num objeto a parte e depois unir ao data.frame ou escrever manualmente dentro da função *data.frame*.
+
+```{r}
+#primeira opcao
+times <- c("corinthians","flamengo","fluminense","bahia","santos","palmeiras")
+dados2 <- data.frame(dados,times)
+
+#segunda opcao
+dados2 <- data.frame(dados,
+                     times=c("corinthians","flamengo","fluminense","bahia","santos","palmeiras"))
+
+dados2[,c(1,5)]
+```
+
+## {.unlisted .unnumbered}
+
+# Segundo encontro (13/09)
+
+# Terceiro encontro (20/09)
+
+# Quarto encontro (27/09)
+
+# Contato
+
+Abaixo disponibilizo algumas informações para contato. Não tenham receio de me comunicar sobre qualquer tipo de problema, eventualidade, dúvida ou ideia.
+
+-   E-mail: [arjonagv99\@gmail.com](mailto:arjonagv99@gmail.com){.email}
+-   Git Hub: [arjona-jonas](https://github.com/arjona-jonas)
+-   LinkedIn: [Jonas Arjona](https://www.linkedin.com/in/jonas-arjona/)
