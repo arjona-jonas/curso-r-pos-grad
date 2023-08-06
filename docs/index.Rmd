@@ -17,27 +17,27 @@ Antes de iniciar o curso é importante que vocês alunos sigam algumas etapas. A
 
 A segunda etapa é seguir o tutorial abaixo de instalação do R e do RStudio. São dois programas diferentes, mas bem simples de serem instalados. Elaborei um tutorial próprio no Windows, mas também é possível instalar no Mac e no Linux. Os tutoriais para estes dois últimos são de terceiros.
 
--   [Tutorial Windows](https://drive.google.com/file/d/1DoHh0yICeu2-NnSndg22dYqCCdi7FP42/viewhttps://drive.google.com/file/d/1DoHh0yICeu2-NnSndg22dYqCCdi7FP42/view)
+-   [Tutorial Windows](https://drive.google.com/file/d/1DoHh0yICeu2-NnSndg22dYqCCdi7FP42/view){target="_blank"}
 
--   [Tutorial Mac](https://www.youtube.com/watch?v=rr54DqsJJjY)
+-   [Tutorial Mac](https://www.youtube.com/watch?v=rr54DqsJJjY){target="_blank"}
 
--   [Tutorial Linux](https://www.youtube.com/watch?v=L01y0W7rnnA)
+-   [Tutorial Linux](https://www.youtube.com/watch?v=L01y0W7rnnA){target="_blank"}
 
 Disponibilizo também dois livros sobre a linguagem e a interface RStudio. O de Aquino é um pouco datado mas ainda funciona e está em português. O de Wickham é super recente (atualizado em junho de 2023), possui exercícios e é gratuito, mas está em inglês. Usem ambos para consultas e/ou aprofundar os estudos.
 
--   ["R para cientistas sociais" por Jakson Aquino](https://drive.google.com/file/d/14dclrDG0kV6ZuW0fJQxSgjXnHGsuVcWi/view)
+-   ["R para cientistas sociais" por Jakson Aquino](https://drive.google.com/file/d/14dclrDG0kV6ZuW0fJQxSgjXnHGsuVcWi/view){target="_blank"}
 
--   ["R for Data Science" por Hadley Wickham e colegas](https://r4ds.hadley.nz/)
+-   ["R for Data Science" por Hadley Wickham e colegas](https://r4ds.hadley.nz/){target="_blank"}
 
 Por fim, disponibilizo aqui um glossário de termos usados no roteiro, scripts e durante as aulas. Ele é passível de expansão tanto por mim quanto por vocês (caso haja demanda).
 
--   [Acesse o glosário aqui!](https://docs.google.com/document/d/1Tewif9K5ZXFJfRe-3InCMk-HN401ilslLPvyvn6xpsE/edit?usp=sharing)
+-   [Acesse o glosário aqui!](https://docs.google.com/document/d/1Tewif9K5ZXFJfRe-3InCMk-HN401ilslLPvyvn6xpsE/edit?usp=sharing){target="_blank"}
 
 Esta página e o material aqui usado estarão sempre disponível aos alunos e podem ser consultados novamente e compartilhados.
 
 Aproveitem!
 
-# Primeiro encontro (06/09)
+# Primeiro encontro (06/09): R base
 
 ::: {style="display: flex;"}
 <div>
@@ -110,7 +110,7 @@ Iremos escrever nossas primeiras linhas de código no editor de texto, para mant
 
 Notem como os comandos são escritas e aninhados. Usamos parênteses para separar processos. No caso da média, por exemplo, a parte da soma do cálculo é toda contida dentro de um parênteses, para em seguida esse resultado ser dividido por 7 (o número de elementos somados). É um processo muito semelhante ao ordenamento de operações na matemática convencional.
 
-Também podemos fazer comparações usando de operadores lógicos, sinais matemáticos que avaliam se uma determinada condição é verdadeira ou falsa. Abaixo temos uma lista retirada de [Aquino (2014)](https://drive.google.com/file/d/14dclrDG0kV6ZuW0fJQxSgjXnHGsuVcWi/view) de alguns operadores convencionais da área e alguns exemplos. Podemos amontoar múltiplas comparações usando operadores entre duas ou mais comparações.
+Também podemos fazer comparações usando de operadores lógicos, sinais matemáticos que avaliam se uma determinada condição é verdadeira ou falsa. Abaixo temos uma lista retirada de [Aquino (2014)](https://drive.google.com/file/d/14dclrDG0kV6ZuW0fJQxSgjXnHGsuVcWi/view){target="_blank"} de alguns operadores convencionais da área e alguns exemplos. Podemos amontoar múltiplas comparações usando operadores entre duas ou mais comparações.
 
 ![](../imagens/operadores.png)
 
@@ -603,7 +603,7 @@ dados2[,c(1,5)]
 
 ##  {.unlisted .unnumbered}
 
-# Segundo encontro (13/09)
+# Segundo encontro (13/09): dplyr
 
 Neste segundo encontro daremos continuidade aos estudos em R, dessa vez já introduzindo uma base de dados reais, o uso de pacotes e scripts de agregação. Aprenderemos a preparar um ambiente de análise, abrir um arquivo .csv e manipularmos ele.
 
@@ -760,6 +760,8 @@ Neste curso usaremos três pacotes do Tidyverse: dplyr, para manipular de data.f
 ## Dplyr
 
 Apesar da amplitude de funções e opções, o pacote dplyr possui meia dúzia de funções que usaremos de maneira constante em análises. Elas servem para selecionar variáveis, agrupar observações, filtrar dados, criar variáveis e organizar visualizações.
+
+![](../imagens/dplyr.png){width=50% height=50%}
 
 ### *select*
 
@@ -1041,7 +1043,7 @@ dados %>%
 
 O *mutate* foi usado para reduzir a diversidade de respostas em "nome_favorecido". Nela temos "Sigiloso" e vários outros valores (os nomes dos estabelecimentos que foram pagos com o CPGF), enquanto que na nossa coluna criada temos apenas "Sigiloso" e "Aberto".
 
-Para conhecer mais sobre o pacote acesse seu [site oficial](https://dplyr.tidyverse.org/) ou consulte a sua "cheatsheet/colinha" [aqui](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf).
+Para conhecer mais sobre o pacote acesse seu [site oficial](https://dplyr.tidyverse.org/) ou consulte a sua "cheatsheet/colinha" [aqui](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf){target="_blank"}.
 
 ## Cenas do próximo capítulo
 
@@ -1116,7 +1118,6 @@ dados %>%
 O valor de 97.684,15 reais corrigido valia 160.202 reais ao final de 2022.
 
 6. 
-A maior despesa custou 1.649,99 reais.
 ```{r}
 dados %>% 
   filter(nome_órgão=="Fundação Universidade Federal de São Carlos") %>% 
@@ -1124,17 +1125,324 @@ dados %>%
   select(nome_órgão,nome_portador,nome_favorecido,valor_transação) %>% 
   head()
 ```
+A maior despesa custou 1.649,99 reais.
 
 ##  {.unlisted .unnumbered}
 
-# Terceiro encontro (20/09)
+# Terceiro encontro (20/09): stringr
+Neste encontro lidaremos com dados em formato de texto, isto é, characters ou factors. No encontro anterior vimos que há entradas equivocadas nos nossos dados quanto a alguns órgãos e sub-órgãos. Além disso, o título das colunas também foi modificado para se encaixar em padrões de boas práticas em programação. Por fim, podemos ter interesse em quebrar datas e nomes de pessoas. Todas essas tarefas podem ser feitas usando o stringr.
 
-# Quarto encontro (27/09)
+![](../imagens/stringr.png){width=50% height=50%}
+
+De início, prepararemos nosso script selecionando nosso working directory, a pasta que conterá nossos dados, e carregando o tidyverse. Notem que como já instalamos ele antes, agora só precisamos rodar a função *library*.
+
+```{r,eval=FALSE}
+setwd("C:/Users/arjon/Documents/GitHub/curso-r-pos-grad")
+
+library(tidyverse)
+```
+
+Feito isso, carregamos nossos dados como feito anteriormente. 
+
+```{r}
+dados <- read.table("cartao_bolsonaro2019.csv",
+                    sep=",",dec=".",
+                    header=TRUE,
+                    fileEncoding = "latin1")
+```
+
+As funções do stringr lidam com objetos unidimensionais de texto, o que significa que sempre que formos usar alguma delas, nós precisamos oferecer ao R um objeto desse gênero.
+
+Dado que data.frames são junções de objetos unidimensionais, caso queiramos aplicar uma de suas funções, precisamos oferecer apenas a coluna de interesse, seja usando índices, seja usando cifrão e o nome da coluna. Enquanto o dplyr só trabalhava com data.frames, o stringr só trabalha com esses objetos unidimensionais. Todas as suas funções começando com o prefixo *str_* (com exceção de *str*, que é do R base).
+
+Nossa primeira tarefa consistirá em corrigir os nomes de forma mais ágil. No código abaixo, `colnames(dados)` produz um objeto unidimensional textual, de tipo character. As funções do stringr aceitarão ele como argumento.
+
+```{r}
+colnames(dados)
+```
+
+Neste caso, queremos que os nomes das colunas estejam todos em minúsculo e os pontos (".") sejam convertidos em *underlines* ("_"). Seria interessante também remover acentos e outros caracteres especiais (o que não faremos nesses nomes mas ensinaremos a ser feito). Usaremos o pipe para fazer essas duas mudanças de uma só vez.
+
+Para remover o caixa-alta, usamos a função *str_to_lower* (para fazer o contrário, usamos o *str_to_upper*). Seu único argumento (relevante aqui) é o objeto que será tirado do caixa-alta. Usando um pipe para passar o resultado de `colnames(dados)` como argumento em *str_to_lower*.
+
+```{r}
+colnames(dados) %>% 
+  str_to_lower()
+```
+
+Para substituir o ponto por *underline*, usamos a função *str_replace_all*. Seus argumentos são: o objeto a ser aplicada a função; "pattern" que é um padrão textual para identificar um caractere; e "replacement" que é aquilo que será colocado no lugar do "pattern". O *replace* do nome da função vem dessa troca. O *all* garante que caso hajam mais de uma correspondência do "pattern" por elemento do objeto, todos eles serão substituídos (como no caso de "NOME.ÓRGÃO.SUPERIOR", que tem dois pontos).
+
+```{r}
+colnames(dados) %>% 
+  str_replace_all(pattern="\\.",replacement = "_")
+```
+
+Podemos juntar tudo num pipe e já usar o operador de associação para corrigir os nomes da nossa base.
+
+```{r}
+names(dados) <- colnames(dados) %>% 
+  str_to_lower() %>% 
+  str_replace_all(pattern="\\.",replacement = "_")
+
+colnames(dados)
+```
+
+Um adendo muito importante. No "pattern" para substituir o ponto, escrevemos "\\\\." ao invés de "." porque esse caracter tem um significado especial para o stringr (que consta na segunda página da [colinha](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf){target="_blank"}). Em 75% dos casos escrevemos o "pattern" normalmente, porém há esses poucos casos que são exceções. Usem a colinha ou pesquisem no Google (provavelmente em inglês) sobre como substituir um caracter especial que esteja dando problemas para vocês.
+
+## Corrigindo nomes dos órgãos
+Apenas com *str_replace_all* e *str_to_upper* já é possível limparmos os dados problemáticos do último encontro. Com essas funções convertemos todo o texto em caixa-alta e removemos "ê" ou "Ê" dos nossos dados. Quando ocorrem essas divergências, o R passa a entender essas várias versões como valores diferentes e não os unifica. Logo, quando fizemos um agrupamento para checar dados sigilosos, observamos que a ABIN tinha duas formas diferentes de ser mencionada, o que dividia as despesas em dois grupos, mesmo se tratando do mesmo órgão. 
+
+Esse problema ocorre tradicionalmente quando temos dados inseridos no sistema manualmente, digitados por seres humanos. Temos então: abreviados VS completos; com acento VS sem acento; nomes VS siglas. Quando maior a base, mais difícil é de corrigirmos isso, já que não é fácil conhecermos todos os possíveis erros que diferenciam valores.
+
+Para observar todos os valores possíveis que há nos nossos dados usamos a função *unique*, do R base. A função *levels* faz algo parecido, mas apenas caso o tipo do dado seja factor. *unique*, por outro lado, independe do tipo de dado.
+
+### {.tabset .unlisted .unnumbered}
+
+#### nome_órgão_superior
+```{r}
+unique(dados$nome_órgão_superior)
+```
+
+#### nome_órgão
+```{r}
+unique(dados$nome_órgão)
+```
+
+#### nome_unidade gestora
+```{r}
+unique(dados$nome_unidade_gestora) %>% 
+  head(n=25)
+```
+
+## {.unlisted .unnumbered}
+
+Tanto para "nome_órgão_superior" quanto para "nome_órgão", não parece que temos muitos problemas, apesar dos caracteres especiais e do texto fora do caixa-alta. É provável que esses campos sejam preenchidos automaticamente, seja oferecendo opções ao usuário, seja não permitindo mudar seu conteúdo com base em alguma norma. Ambos os casos parecem não permitirem respostas abertas. Por outro lado, o "nome_unidade_gestora" é muito mais volátil e suscetível a erros, bem como possui muito mais valores. São cerca de 1022 valores diferentes. 
+
+Aqui temos o problema da dificuldade de descobrir todos os possíveis erros. Resolvemos ele de duas formas: minuciosamente estudando os dados e descobrindo caso a caso as divergências; reduzindo, por filtros, o número de casos que lidaremos, focalizando apenas nos nomes problemáticos relacionados a nossa temática de pesquisa. Aqui optamos pela segunda opção. Iremos apenas lidar com alguns órgãos, aqueles ligados à Presidência da República.
+
+```{r}
+presidencia <- dados %>% 
+  filter(nome_órgão_superior=="Presidência da República")
+
+unique(presidencia$nome_unidade_gestora)
+```
+
+Vemos aqui que temos duas ABIN, uma com acento e outra sem. Além disso, temos um "ÇÃ" em "INTERVENÇÃO" e um "Ç" em "SEGURANÇA". Para corrigir isso, usamos o *str_replace_all*. Lembrem-se que caso não associemos o resultado de uma função a um objeto, ele não é salvo. Abaixo usamos a coluna "nome_unidade_gestora" nas funções e com o operador de associação *<-* para substituir a coluna original pela sua versão modificada.
+
+```{r}
+presidencia$nome_unidade_gestora <- presidencia$nome_unidade_gestora %>% 
+  str_replace_all(pattern = "Ê",replacement="E") %>%
+  str_replace_all(pattern= "ÇÃ",replacement = "CA") %>% 
+  str_replace_all(pattern = "Ç",replacement = "C")
+
+unique(presidencia$nome_unidade_gestora)
+```
+
+Quando temos múltiplos padrões e substituições, podemos amarrar "pattern" e "replacement" dentro de uma função *c* da seguinte forma:
+
+```{r}
+dados$nome_órgão %>% 
+  str_to_upper() %>% 
+  str_replace_all(c("ÇÃ"="CA","Ê"="E","Ç"="C","É"="E","Ã"="A")) %>% 
+  unique() %>% 
+  head(n=10)
+```
+
+No código acima, colocamos dentro do *c* duplas de "pattern" e "replacement" separadas por vírgula. Além do *str_replace_all*, temos três outras funções que são muito úteis em rotinas de limpeza de dados.
+
+## *str_detect*
+
+Essa função retorna TRUE ou FALSE para um determinado padrão especificado dentro de um objeto. Por exemplo, se queremos saber se há outras nomes no restante da nossa base que possuem "ê" ou "Ê", podemos usar essa função. Abaixo juntamos ela com um *table* para vermos as quantidades de casos TRUE e FALSE.
+
+```{r}
+str_detect(dados$nome_unidade_gestora,pattern="Ê") %>% 
+  table()
+```
+
+Como o resultado é um TRUE/FALSE podemos associá-lo a um objeto e depois usá-lo num índice para obtermos da nossa base apenas os casos onde o *str_detect* achou uma correspondência.
+
+```{r}
+indice <- str_detect(dados$nome_unidade_gestora,pattern="Ê")
+
+dados[indice,]
+```
+
+## *str_extract* e *str_extract_all*
+Essa função checa cada elemento de um objeto fornecido a procura do padrão especificado. Se meu padrão for "cão", a função retornará apenas "cão" (caso encontre esse padrão) e `NA` (dado "vazio") para casos onde nada foi encontrado. Sua versão *all* retorna todas as correspondência do padrão de um elemento caso exista mais de uma.
+
+Apesar de não parecer muito útil, tradicionalmente usamos ela com *regex*, que são formas de criar padrões textuais complexos e flexíveis (já já discutiremos isso). De qualquer forma temos o exemplo abaixo que procura "QUEIROZ" em "nome_portador". Usamos um *table* para checar quantos dados com o padrão foram encontrados.
+
+```{r}
+str_extract(dados$nome_portador,pattern="QUEIROZ") %>% 
+  table()
+```
+
+Se não usarmos o *table*, o R imprimirá a checagem inteira, com NAs e "QUEIROZ" (usamos *head* aqui para não encher essa página com a checagem inteira).
+```{r}
+str_extract(dados$nome_portador,pattern="QUEIROZ") %>% 
+  head(n=100)
+```
+
+## *str_subset*
+Essa função é parecida com a anterior, mas ao invés de retornar apenas o padrão desejado ela retorna todo o elemento que possui o padrão. No caso anterior obtivemos apenas o padrão e NAs. Aqui iremos obter o texto completo e sem NAs. Num exercício passado que foi pedido dados sobre a UFSCar usamos essa função para extrair de que forma a universidade aparecia nos dados (usando "SÃO CARLOS" como "pattern"). Abaixo temos outro exemplo, dessa vez com a palavra "JOIA".
+
+```{r}
+str_subset(dados$nome_favorecido,pattern="JOIA")
+```
+
+Normalmente usamos ela para testar se estamos usando o nome correto para outras funções do stringr ou até para explorar os dados.
+
+## patterns e regex
+Como vimos nos tópicos anteriores, é possível identificar um texto (inteiro ou uma parte) usando "patterns"/padrões, sejam eles de uma só letra (como "ê","ç","ã"), sejam eles maiores ("Inteligência","Gabinete","Presidência da República"). Acontece que nem todo caso nós sabemos exatamente qual será o conteúdo escrito, e sim apenas o seu "formato". 
+
+Por exemplo, sabemos que siglas de estados ou países são compostos apenas por letras maiúsculas, duas delas no primeiro caso e três no segundo. Nunca deverá haver qualquer outro caracter nesses casos. Mas erros acontecem e podemos estar trabalhando com uma base onde isso ocorra, seja por conta de erros humanos, seja porque conta de escolhas dos criadores da base.
+
+As possíveis combinações são infinitas e não podemos elencar todas elas para fazer a corrreção. Mesmo se pudéssemos, o que garante que uma nova atualização não introduziria novos erros!?
+
+Para resolver esse problema usamos o *regex*, abreviação para *regular expressions*, ou expressões regulares. São formas lógicas de estabelecer padrões de texto mais complexos e amplos. Usamos essas expressões no argumento "pattern" das nossas funções do stringr. Apesar de não serem super cruciais, podemos precisar delas caso estejamos trabalhando com dados muito sujos. Abaixo temos alguns exemplos de *regex* tirados da colinha do pacote.
+
+![](../imagens/regex.png)
+
+## Testando *regex*
+
+No exemplo citado acima, precisaríamos de um *regex* que pegue apenas números/dígitos e esta expressão é "[:digit:]". Com ela, todo número será selecionado e podemos  prosseguir com o tratamento indicando o que deverá ser feito com eles. Neste caso queremos excluí-los, o que no *str_replace_all* pode ser feito se deixarmos o argumento "replacement" vazio.
+
+```{r}
+letras_numeros <- c("AA2","BB20","CC190","DD10000000")
+
+str_replace_all(letras_numeros,pattern="[:digit:]",replacement = "")
+```
+
+Quando usamos "\\\\." ao invés de ".", estamos usando de *regex*. O ponto por si só é usado para indicar todo conteúdo dos elementos de um objeto de texto. Abaixo demonstramos isso.
+
+```{r}
+teste_regex <- c("joao","caio","maria","camila")
+
+teste_regex
+
+str_replace_all(teste_regex,pattern=".",replacement = "A")
+```
+
+A [colinha do stringr](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf){target="_blank"}, na segunda página, contém alguns *regex* bastante comuns: números, letras, espaços em branco, caracteres especiais, maiúsculas e minúsculas, etc. Há ainda algumas expressões bem complexas que consideram o que vem antes ou depois de algo, quantidade de vezes que algo aparece, algo seguido da alguma outra coisa, etc. É realmente algo muito extenso e complexo que vale um estudo a parte (algo que não faremos totalmente aqui). 
+
+## Usando *regex* nas datas
+Uma rápida olhada nos dados nos mostra que há dentro do nosso arquivo despesas feitas antes de 2019, mas que acabaram caindo no extrato dos meses desse ano.
+
+Consequentemente, nossa análise pode acabar falhando ao considerar esses custos. Para resolver esse "tira-teima", observamos "data_transação".
+
+```{r}
+head(dados$data_transação)
+```
+
+Há algumas formas de tratar uma coluna com datas, mas usaremos o stringr para obter o dia, mês e ano reais da despesa. Um padrão é bem claro nelas: os dias são sempre os dois primeiro dígitos da esquerda; os anos são sempre os quatro últimos dígitos da direita; e os meses são sempre os dois dígitos contidos entre as duas barras ("/"). Mesmo se fossem hífens ("-"), o padrão é o mesmo. Isso só mudará se estivermos usando dados de uma base estrangeira (onde o padrão é mês/dia/ano).
+
+Usando um *mutate* com um *str_extract*, podemos criar três colunas diferentes: uma para dia; uma para mês; e uma para ano. Precisamos apenas separar cada coluna no *mutate* com uma vírgula. Não se preocupem se isso soar complexo demais, a ideia é só introduzir a possibilidade de tratar texto em R de maneira bastante versátil. Há pacotes específicos para datas, como o [lubridate](https://lubridate.tidyverse.org/){target="_blank"}.
+
+Usaremos dentro do *str_extract* três tipos de *regex*: para dia será `"[:digit:]{2}(?=/)"`; para mês será `"(?<=/)[:digit:]{2}(?=/)"`
+; e para ano será `"(?<=/)[:digit:]{4}"`. Iremos salvar essa modificação usando o operador de associação *<-*.
+
+```{r}
+dados <- dados %>% 
+  mutate(dia=str_extract(data_transação,pattern="[:digit:]{2}(?=/)"),
+         mes=str_extract(data_transação,pattern="(?<=/)[:digit:]{2}(?=/)"),
+         ano=str_extract(data_transação,pattern="(?<=/)[:digit:]{4}"))
+
+dados %>% 
+  select(data_transação,dia,mes,ano) %>% 
+  head()
+```
+
+Os valores entre colchetes ("{}") após "[:digit:]" indicam quantos dígitos queremos que estejam juntos para serem reconhecidos e extraídos (2 para dias e meses, 4 para anos). O conteúdo entre parêntenses ("(?=/)" para antes,"(?<=/)" para depois) indicam se queremos os números antes das barras ("/"), entre elas ou depois delas.
+
+O resultado é uma coluna para cada parte da data. Logo de cara vemos que há dados de 2018 na nossa base e que podem inflacionar nossas métricas. Logo, precisaríamos retirá-los para considerar verdadeiramente os valores do governo Bolsonaro.
+
+Para conhecer mais sobre o pacote acesse seu [site oficial](https://stringr.tidyverse.org/){target="_blank"} ou consulte a sua "cheatsheet/colinha" [aqui](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf){target="_blank"}.
+
+## Cenas do próximo e último capítulo
+Vimos que é possível corrigir e manipular textos em R de maneira bastante flexível, sempre em resposta às nossas necessidades como pesquisadores. Uma base de dados perfeita não existe, mas podemos mexer naquilo que temos em mãos para chegar num resultado esperado (ou ao menos perto).
+
+Porém, após a análise minuciosa vem a exposição dos achados. O mundo acadêmico (e fora dele também) não saberá do que estamos falando ou nossos resultados se não os comunicarmos de maneira efetiva. Tabelas funcionam até certo ponto.
+
+É ai que gráficos entram como ferramentas para facilitar essa comunicação, focalizando no que é importante e desenhando (literalmente ou não) as relações encontradas. O R tem um pacote só para gráficos, o ggplot2, que iremos tratar no próximo encontro.
+
+## Exercícios
+
+### {.tabset .unlisted .unnumbered}
+
+#### Questões
+
+1.   Num encontro anterior, selecionamos as despesas feitas em nome da UFSCar, usando um nome específico. Use "SÃO CARLOS" em "nome_unidade_gestora" para encontrar os possíveis nomes que a universidade pode receber (só os nomes mesmo).
+-   __Dica: use *unique* para pegar apenas valores únicos.__
+
+2.    Troque "SÃO CARLOS" por "UFSCAR". Há alguma diferença? Se sim, quais outras unidades surgem?
+
+3.    Com nossos novos dados de data, filtre apenas pelas despesas feitas em 2019 (usando a nova coluna "ano"), agrupe por dia do mês e obtenha a soma, o número de despesas e a mediana das despesas. Qual dia do mês foi o que no total teve a maior soma?
+
+4.    Usando nossa base "presidencia" e *str_subset* obtenha os valores possíves (com *unique*) das despesas em que "nome_favorecido" contenha "LTDA".
+
+5.    Corrija o valor da transação, substituindo o ponto (".") como separador por vírgula (",").
+-   __Dica: lembre-se que quando o "pattern" é um ponto "." a forma correta de se referir a ele é com "\\."__
+
+6.    (Desafio) Temos um problema com pessoas chamadas Fabrício. Suspeitamos que as despesas que elas fizeram usando o cartão sejam fraudulentas. Extraia todas as despesas onde o "nome_portador" contenha "FABRICIO" (exatamente dessa forma!!) usando *str_detect*. Faça um *arrange* decrescente pelo valor da transação. Qual o maior valor e qual órgão o fez? 
+-   __Dica: um *str_detect* retorna apenas as observações que possuam totalmente aquilo que colocamos em "pattern", isto é, retorna TRUE para elas e FALSE para as demais. É possível usarmos o resultado do *str_detect* dentro de um índice para selecionar um conjunto de linhas. Como queremos outras informações, nosso espaço para colunas no índice deverá estar vazio.__
+
+#### Soluções
+1.
+```{r}
+str_subset(dados$nome_unidade_gestora,pattern="SÃO CARLOS") %>% 
+  unique()
+```
+
+2.
+```{r}
+str_subset(dados$nome_unidade_gestora,pattern="UFSCAR") %>% 
+  unique()
+```
+Há diferença, temos o Hospital Universitário (HU) e a Secretaria Geral de Informática (SIN).
+
+3.
+```{r}
+dados %>% 
+  filter(ano=="2019") %>% 
+  group_by(dia) %>% 
+  summarise(soma=sum(valor_transação),
+            contagem=n(),
+            mediana=median(valor_transação)) %>% 
+  arrange(desc(soma))
+```
+A maior soma total foi no dia 22, com 1.029.776,60 reais
+
+4.
+```{r}
+str_subset(presidencia$nome_favorecido,pattern="LTDA") %>% 
+  unique() %>% 
+  head()
+```
+
+
+5.
+```{r}
+str_replace(dados$valor_transação,pattern="\\.",replacement = ",") %>% 
+  head(n=10)
+```
+
+6.
+```{r}
+fabricio <- str_detect(dados$nome_portador,pattern="FABRICIO")
+
+dados[fabricio,] %>% 
+  arrange(desc(valor_transação))
+```
+O maior valor foi de 2.250 reais e foi feito pela Agência Nacional de Mineiração em RS, do Ministério de Minas e Energia.
+
+## {.unlisted .unnumbered}
+
+# Quarto encontro (27/09): ggplot2
 
 # Contato
 
 Abaixo disponibilizo algumas informações para contato. Não tenham receio de me comunicar sobre qualquer tipo de problema, eventualidade, dúvida ou ideia.
 
 -   E-mail: [arjonagv99@gmail.com](mailto:arjonagv99@gmail.com){.email}
--   Git Hub: [arjona-jonas](https://github.com/arjona-jonas)
--   LinkedIn: [Jonas Arjona](https://www.linkedin.com/in/jonas-arjona/)
+-   Git Hub: [arjona-jonas](https://github.com/arjona-jonas){target="_blank"}
+-   LinkedIn: [Jonas Arjona](https://www.linkedin.com/in/jonas-arjona/){target="_blank"}
