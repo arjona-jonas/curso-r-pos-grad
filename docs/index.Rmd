@@ -7,9 +7,6 @@ output:
     toc_float: true
     df_print: paged
 ---
-```{r setup,include=FALSE}
-```
-
 
 # Preliminares
 
@@ -36,6 +33,20 @@ Por fim, disponibilizo aqui um glossário de termos usados no roteiro, scripts e
 Esta página e o material aqui usado estarão sempre disponível aos alunos e podem ser consultados novamente e compartilhados.
 
 Aproveitem!
+
+# Instruções para entregas
+
+Como demanda da universidade, haverá um processo avaliativo dos alunos. Os exercícios disponibilizados precisam ser entregues até a segunda feira da semana seguinte na respectiva atividade no Classroom. A resolução precisa ser escrita e enviada em um arquivo em código R (ou seja, em um arquivo salvo do editor de texto com o final ".R"). É importante colocar o nome e sobrenome no título do arquivo. Qualquer dúvida não hesitem em me comunicar ou comunicar o monitor Davi.
+
+A avaliação dos alunos consistirá num misto entre presença nos encontros, interação e entrega das atividades. Apesar das atividades terem respostas corretas, erros e acertos não contarão pontos, e sim a entrega das atividads. Feedbacks sobre as resoluções poderão eventualmente serem escritos. Após o prazo da entrega, as soluções serão disponibilizadas no material didático ao lado das questões.
+
+# Contato
+
+Abaixo disponibilizo algumas informações para contato. Não tenham receio de me comunicar sobre qualquer tipo de problema, eventualidade, dúvida ou ideia.
+
+-   E-mail: [arjonagv99@gmail.com](mailto:arjonagv99@gmail.com){.email}
+-   Git Hub: [arjona-jonas](https://github.com/arjona-jonas){target="_blank"}
+-   LinkedIn: [Jonas Arjona](https://www.linkedin.com/in/jonas-arjona/){target="_blank"}
 
 # Primeiro encontro (06/09): R base
 
@@ -552,54 +563,7 @@ Por fim, usem o Google. Procurem o pacote da função, a própria função ou ai
 
 #### Soluções
 
-1.  
-
-```{r}
-dados <- data.frame(nome=c("caio","joão","camila","bruna","denis","joselito"),
-                    cor=c("azul","vermelho","amarelo","azul","azul","amarelo"),
-                    idade=c(18,26,30,13,49,58),
-                    animal_de_estimacao=c(T,T,F,T,F,F))
-```
-
-2.  
-
-```{r}
-dados[,c(1,4)]
-```
-
-3.  
-
-```{r}
-dados[3:5,]
-```
-
-4.  
-
-```{r}
-nomes <- c(2,4)
-
-dados[nomes,]
-```
-
-5.  
-
-```{r}
-(dados[,3]*365)*24
-```
-
-6.  Há duas formas (por enquanto) de fazer a inserção de uma nova coluna. Podemos escrever os times num objeto a parte e depois unir ao data.frame ou escrever manualmente dentro da função *data.frame*.
-
-```{r}
-#primeira opcao
-times <- c("corinthians","flamengo","fluminense","bahia","santos","palmeiras")
-dados2 <- data.frame(dados,times)
-
-#segunda opcao
-dados2 <- data.frame(dados,
-                     times=c("corinthians","flamengo","fluminense","bahia","santos","palmeiras"))
-
-dados2[,c(1,5)]
-```
+A serem divulgadas posteriormente.
 
 ##  {.unlisted .unnumbered}
 
@@ -1073,59 +1037,7 @@ Vimos aqui que muito dos processos do dplyr dependem de como estão escritas par
 
 #### Soluções
 
-1.
-Para entender o que cada sigla significa, use [este site](https://portaldatransparencia.gov.br/pagina-interna/603411-dicionario-de-dados-cpgf).
-```{r}
-dados %>% 
-  group_by(transação) %>% 
-  summarise(contagem=n(),
-            soma=sum(valor_transação),
-            media=mean(valor_transação),
-            mediana=median(valor_transação),
-            min=min(valor_transação),
-            max=max(valor_transação))
-```
-2.
-```{r}
-dados %>% 
-  filter(nome_favorecido=="HAVAN LOJAS DE DEPARTAMENTOS LTDA")
-```
-
-3.
-```{r}
-dados %>% 
-  filter(mês_extrato==8) %>% 
-  group_by(data_transação) %>% 
-  summarise(soma=sum(valor_transação)) %>% 
-  arrange(soma)
-```
-O dia 24 de Junho de 2019 foi o que teve o menor valor total de despesas.
-
-4.
-Para fazer isso, iremos usar um *filter* que selecionará apenas os casos em que o valor da despesa é igual ao valor máximo de despesas apresentado nos nossos dados, ou seja, onde `valor_transação==max(valor_transação)`.
-```{r}
-dados %>% 
-  filter(valor_transação==max(valor_transação))
-```
-A maior despesa foi feita pela Secretaria Especial de Administração da Presidência, no valor de R$97.684,15 e é de caráter sigiloso.
-
-5.
-```{r}
-dados %>% 
-  mutate(valor_corrigido=valor_transação*1.64) %>% 
-  arrange(desc(valor_corrigido))
-```
-O valor de 97.684,15 reais corrigido valia 160.202 reais ao final de 2022.
-
-6. 
-```{r}
-dados %>% 
-  filter(nome_órgão=="Fundação Universidade Federal de São Carlos") %>% 
-  arrange(desc(valor_transação)) %>% 
-  select(nome_órgão,nome_portador,nome_favorecido,valor_transação) %>% 
-  head()
-```
-A maior despesa custou 1.649,99 reais.
+A serem divulgadas posteriormente.
 
 ##  {.unlisted .unnumbered}
 
@@ -1356,6 +1268,12 @@ Os valores entre colchetes ("{}") após "[:digit:]" indicam quantos dígitos que
 
 O resultado é uma coluna para cada parte da data. Logo de cara vemos que há dados de 2018 na nossa base e que podem inflacionar nossas métricas. Logo, precisaríamos retirá-los para considerar verdadeiramente os valores do governo Bolsonaro.
 
+Há, porém, um enorme problema. As despesas sigilosas não tem data, o que significa que esse processo acima resultada em dados inválidos (NAs) para este caso. Usamos o argumento "useNA" com o valor "always" em *table* para o R nos oferecer uma contagem do número de casos para cada valor. Isso dificulta em muito uma análise temporal dos gastos sigilosos.
+
+```{r}
+table(dados$ano,useNA = "always")
+```
+
 Para conhecer mais sobre o pacote acesse seu [site oficial](https://stringr.tidyverse.org/){target="_blank"} ou consulte a sua "cheatsheet/colinha" [aqui](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf){target="_blank"}.
 
 ## Cenas do próximo e último capítulo
@@ -1387,62 +1305,322 @@ Porém, após a análise minuciosa vem a exposição dos achados. O mundo acadê
 -   __Dica: um *str_detect* retorna apenas as observações que possuam totalmente aquilo que colocamos em "pattern", isto é, retorna TRUE para elas e FALSE para as demais. É possível usarmos o resultado do *str_detect* dentro de um índice para selecionar um conjunto de linhas. Como queremos outras informações, nosso espaço para colunas no índice deverá estar vazio.__
 
 #### Soluções
-1.
-```{r}
-str_subset(dados$nome_unidade_gestora,pattern="SÃO CARLOS") %>% 
-  unique()
-```
 
-2.
-```{r}
-str_subset(dados$nome_unidade_gestora,pattern="UFSCAR") %>% 
-  unique()
-```
-Há diferença, temos o Hospital Universitário (HU) e a Secretaria Geral de Informática (SIN).
-
-3.
-```{r}
-dados %>% 
-  filter(ano=="2019") %>% 
-  group_by(dia) %>% 
-  summarise(soma=sum(valor_transação),
-            contagem=n(),
-            mediana=median(valor_transação)) %>% 
-  arrange(desc(soma))
-```
-A maior soma total foi no dia 22, com 1.029.776,60 reais
-
-4.
-```{r}
-str_subset(presidencia$nome_favorecido,pattern="LTDA") %>% 
-  unique() %>% 
-  head()
-```
-
-
-5.
-```{r}
-str_replace(dados$valor_transação,pattern="\\.",replacement = ",") %>% 
-  head(n=10)
-```
-
-6.
-```{r}
-fabricio <- str_detect(dados$nome_portador,pattern="FABRICIO")
-
-dados[fabricio,] %>% 
-  arrange(desc(valor_transação))
-```
-O maior valor foi de 2.250 reais e foi feito pela Agência Nacional de Mineiração em RS, do Ministério de Minas e Energia.
+A serem divulgadas posteriormente.
 
 ## {.unlisted .unnumbered}
 
 # Quarto encontro (27/09): ggplot2
 
-# Contato
+Visualizações servem para comunicarmos de maneira mais rápida e simples informações/insights obtidos dos dados. São essencialmente ferramentas que simplificam nosso processo comunicativo ao desenhar os resultados de nossas análises. Usamos elas quando preciamos dialogar com partes que não conhecem a fundo o objeto de nossa fala ou ainda quando nossos achados são demasiado complexos em forma tabular para serem apreendidos apenas com tabelas.
 
-Abaixo disponibilizo algumas informações para contato. Não tenham receio de me comunicar sobre qualquer tipo de problema, eventualidade, dúvida ou ideia.
+Como vimos até o momento, muito do que fazemos no R não é intuitivo ao amplo público (e às vezes nem mesmo pra nós que escrevemos os scripts hahaha), o que significa que precisamos nos apoiar em simplificações. Mesmo numa banca de pós-graduação há um limite pra o quanto é viável e desejável ficar falando sobre métodos e processos. Um especialista em teoria pode ter dificuldade em entender métodos e vice-versa. Abaixo temos uma analogia desse processo.
 
--   E-mail: [arjonagv99@gmail.com](mailto:arjonagv99@gmail.com){.email}
--   Git Hub: [arjona-jonas](https://github.com/arjona-jonas){target="_blank"}
--   LinkedIn: [Jonas Arjona](https://www.linkedin.com/in/jonas-arjona/){target="_blank"}
+![](../imagens/analogia_dados.png)
+
+Para além de coletar, organizar dados e gerar análises, temos também que produzir formas visuais que são mais fáceis de digerir da nossa trajetória, bem como amarrar tudo com uma narrativa (*storytelling*) que dá sentido às nossas conclusões e escolhas. É aí que podemos de construção de gráficos surgem.
+
+## ggplot2 e a gramática dos gráficos
+
+![](../imagens/ggplot2.png){width=50% height=50%}
+
+O ggplot2 é um pacote do tidyverse que é completamente focado em ferramentas para gerar e customizar visualizações. Ele usa algo chamado "gramática dos gráficos" (daí o "gg") que consiste em uma forma pré-definida de códigos. A analogia comumente usada é a de várias folhas de papel-manteiga empilhadas, formando camadas.
+
+![](../imagens/analogia_ggplot2.png)
+Há uma tonelada de informação sobre o ggplot2. A melhor foram de conhecer o pacote é usando e lendo sobre. Vocês podem acessar ao [site do pacote](https://ggplot2.tidyverse.org/){target="_blank"} ou ver a [colinha dele](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf){target="_blank"}.
+
+Aqui iremos apenas sobrevoar alguns dos gráficos mais comuns e visualizar os achados dos nossos encontros anteriores. Mais uma vez, pesquisem os tópicos que chamem a atenção de vocês. Sempre haverá algo novo a ser aprendido.
+
+Como de praxe, primeiro iremos selecionar nosso diretório de trabalho e carregar o tidyverse.
+
+```{r,eval=FALSE}
+setwd("C:/Users/arjon/Documents/GitHub/curso-r-pos-grad")
+
+library(tidyverse)
+```
+
+Além disso, iremos carregar novamente nossa base. Diferente dos arquivos usados antes, este é uma versão que acumula as modificações feitas nos dois últimos encontros: os nomes das colunas estão corretos; alguns caracteres especiais foram removidos; temos a coluna de "data_transação" quebrada.
+
+```{r}
+dados_rev <- read.table("cartao_bolsonaro2019_revisado.csv",
+                    sep=",",dec=".",
+                    header=TRUE,
+                    fileEncoding = "latin1")
+```
+
+## O primeiro gráfico
+
+Como exposto na imagem e explicação acima, precisamos encadear as funções do ggplot2 uma atrás da outra para criar um gráfico. A primeira delas é propriamente a função *ggplot*. Ela pode receber alguns argumentos ou até mesmo nenhum, tudo dependerá do tipo de organização do seu código. No nosso caso colocaremos o nome da nossa base no argumento "data".
+
+```{r}
+ggplot(data=dados_rev)
+```
+
+Se rodarmos esse código iremos obter apenas uma tela em branco no canto inferior direito. É o canvas em branco citado antes. Ele apenas indica que iremos construir um gráfico usando o ggplot2. A próxima etapa é selecionar um tipo de gráfico e aplicar a função desejada. Neste pacote, os gráficos recebem o nome de "geom_" seguido do tipo de gráfico. Por exemplo, um gráficos de pontos recebe o nome de "geom_point".
+
+Todas as funções "geom_" aceitam vários argumentos, sendo o mais importante deles o "mapping". Nele usamos a função *aes* para definimos qual variável será colocada em qual parte do gráfico (eixo x, eixo y, cores, formatos, etc.). Lembrem-se dos parênteses. Para unir todas as camadas de um gráfico, usamos o sinal de adição ("+") entre elas.
+
+No código abaixo criamos um data.frame fictício que contém números relacionados, onde o valor de um deles cresce num ritmo maior que o outro. Em seguida usamos esse objeto para criar um gráfico de pontos.
+
+```{r}
+objeto_teste <- data.frame(num_1=seq(1,10),
+                           num_2=seq(1,10)^2)
+
+ggplot(objeto_teste)+
+  geom_point(mapping=aes(x=num_1,y=num_2))
+```
+
+Percebam que, por conta de termos usado o nome do objeto dentro de *ggplot*, na hora que iremos referenciar as variáveis em "aes" podemos escrever como fizemos nas funções do dplyr. Isso é mais uma vantagem do tidyverse: as funções e pacotes são feitos para se comunicarem da mesma forma.
+
+## Os dados do cartão corporativo
+
+Conhecendo algumas noções de pesquisa, sabemos que nem todo gráfico serve para todo tipo de dados. Como na nossa base não temos mais de uma variável numérica (apenas "valor_transação") usamos dados fictícios no exemplo anterior. Por outro lado, dados qualitativos e quantitativos permitem muitas formas de serem representados graficamente. Temos o tradicional gráfico de barras.
+
+```{r,cache=TRUE}
+ggplot(dados_rev)+
+  geom_bar(mapping=aes(x=nome_órgão_superior))
+```
+
+Há muito o que comentar aqui. Primeiro, "geom_bar" requer apenas o eixo X porque por padrão o eixo Y é sempre a contagem de obervações dos valores de X. Segundo, como o nome dos órgãos são grandes, fica impossível de ler as legendas. Para facilitar a visualização usamos a função "coord_flip" logo após o "geom_bar", juntando tudo com um "+". Ela virará o gráfico em 90 graus.
+
+```{r,cache=TRUE}
+ggplot(dados_rev)+
+  geom_bar(mapping=aes(x=nome_órgão_superior))+
+  coord_flip()
+```
+
+Estamos chegando perto de um formato melhor. Podemos adicionar cor no gráfico para diferenciar os tipos de transação com o argumento "fill" dentro de *aes*. O R automaticamente cria uma legenda com nomes e cores (que podem ainda serem modificados depois).
+
+```{r,cache=TRUE}
+ggplot(dados_rev)+
+  geom_bar(mapping=aes(x=nome_órgão_superior,fill=transação))+
+  coord_flip()
+```
+
+O gráfico já está mais interessante, em especial quanto aos dados sigilosos. Mas a ausência de ordem por quantidade nas barras dificulta a leitura. Iremos resolver isso mais a frente integrando códigos em dplyr com ggplot2. Por hora não lidaremos com isso ainda.
+
+## Outros gráficos comuns e úteis
+
+Os gráficos do ggplot2 são divididos em número de variáveis e seus tipos. O gráfico de barras (ou colunas) usa uma variável discreta e uma contínua, bem como um boxplot. Gráficos de linhas usam duas variáveis contínuas, assim como gráficos de pontos (dispersão). Logo, precisamos conhecer nossas variáveis e nossos objetivos para escolher o melhor dos gráficos.
+
+O gráfico de linhas é útil para observarmos padrões temporais e relações entre variáveis numéricas. Usando a coluna de dia criada, podemos plotar uma leitura do perfil dos gastos por dia do mês ao longo do ano de 2019 (filtramos 2018). Este "geom" não faz cálculos prévios, o que significa que precisamos oferecer para ele as métricas de interesse já calculadas. Para isso criamos um objeto com nossos dados agrupados pelo dia e com um *summarise* contendo as métricas desejadas (média e desvio padrão de despesas).
+
+```{r,message=FALSE}
+dados_metricas <- dados_rev %>% 
+  filter(ano=="2019") %>% 
+  group_by(dia) %>% 
+  summarise(media=mean(valor_transação),
+            desvio=sd(valor_transação))
+
+ggplot(dados_metricas)+
+  geom_line(mapping=aes(x=media,y=desvio))
+```
+
+Se desejarmos usar alguma diferenciação por cor, introduzimos outro agrupamento no nosso código do dplyr (neste caso mês) usamos o argumento "color" em *aes* com esse novo agrupamento. A diferença entre "fill" e "color/colour" se refere ao tipo de gráfico: barras, boxplots e afins usam "fill" porque são elementos gráficos "fechados" (caixas ou barras); linhas e pontos usam "color/colour" porque são elementos gráficos "abertos" (como desenhos que fazemos no paint).
+
+O gráfico abaixo não é dos melhores mas exemplifica a possibilidade de combinações. A única diferença é que precisamos colocar um *as.factor* antes do "mes" no código do gráfico para o R não converter os números do mês (uma categoria) em números matemáticos (numeric).
+
+```{r,message=FALSE,warning=FALSE}
+dados_metricas <- dados_rev %>% 
+  filter(ano=="2019") %>% 
+  group_by(dia,mes) %>% 
+  summarise(media=mean(valor_transação),
+            desvio=sd(valor_transação))
+
+ggplot(dados_metricas)+
+  geom_line(mapping=aes(x=media,
+                        y=desvio,
+                        color=as.factor(mes)))
+```
+
+Temos também o tradicional boxplot, um gráfico com uma capacidade muito grande de comunicar diversas métricas. Para fins expositivos usaremos apenas dados das despesas sigilosas feitas pela Presidência da República. 
+
+Devido ao tamanho dos valores, faremos uma rápida conversão com um *mutate* do valor das despesas para log de base dois. Especificidades matemáticas à parte, essa conversão mantém a distribuição dos valores (e as proporções) e padroniza os valores para uma escala menor (como um z-score).
+
+```{r,fig.width=10,fig.height=11}
+sigilosas <- dados_rev %>% 
+  filter(nome_portador=="Sigiloso" & nome_órgão=="PRESIDENCIA DA REPUBLICA") %>% 
+  mutate(valor_log=log(valor_transação,base = 2))
+
+table(sigilosas$nome_unidade_gestora)
+
+ggplot(sigilosas)+
+  geom_boxplot(mapping=aes(x=nome_unidade_gestora,y=valor_log))
+```
+
+Vemos como os valores da ABIN se concentram nos maiores números e são muito dispersos (não formam nem as caixas do boxplot). Por outro lado, o GSI tem os gastos mais consistentes entre as três unidades. A Secretaria Especial de Administração (a presidência em si), é um meio termo, mas apresenta muitos outliers superiores.
+
+## Títulos e legendas
+
+Podemos modificar legendas, título dos eixos e título do gráfico usando a função *labs*, que deverá ser anexada ao gráfico também após todo seu código com o sinal de adição. Seus argumentos são vários mas bastante intuitivos já que referem-se diretamente aos elementos do gráfico a serem renomeados. Usamos o mesmo código de antes para número de despesas por nome_órgão_superior e adicionamos o *labs*.
+
+```{r,cache=TRUE}
+ggplot(dados_rev)+
+  geom_bar(aes(x=nome_órgão_superior,fill=transação))+
+  coord_flip()+
+  labs(x="Órgão superior",
+       y="Número de despesas",
+       title="Número de despesas por órgão e tipo de transação",
+       subtitle="Dados coletados do site do Portal da Transparência para o ano de 2019",
+       fill="Tipo de transação")
+```
+
+Apesar de agora mais auto explicativo, o gráfico está exprimido demais pelo nome dos órgãos. Conseguimos resolver isso usando a função *theme*, que nos oferece uma enorme quantidade de recursos de customização.
+
+Modificaremos a legenda e o texto do eixo Y. Para o primeiro, usaremos os argumentos "legend.title" e "legend.text" para selecionar o tamanho do texto. Para o segundo usaremos o argumento "axis.text.y" para selecionar o tamanho do texto também. Em ambos os casos usamos a função *element_text*, do próprio ggplot2, que permite configurar texto. Dentro dela no argumento "size" selecionamos o tamanho desejado (a unidade de medida é um pouco nebulosa, é mais fácil ir testando tamanhos). Nela também temos "family" para fontes, "face" para negritos/itálicos/sublinhados, "hjust/vjust" para justificação, "angle" para angulação do texto. A ordem em que colocamos *theme* não importa, desde que não esqueçamos o sinal de adição.
+
+```{r,cache=TRUE}
+ggplot(dados_rev)+
+  geom_bar(aes(x=nome_órgão_superior,fill=transação))+
+  coord_flip()+
+  theme(legend.title = element_text(size=9),
+        legend.text = element_text(size=7),
+        axis.text.y=element_text(size=7))+
+  labs(x="Órgão superior",
+       y="Número de despesas",
+       title="Número de despesas por órgão e tipo de transação",
+       subtitle="Portal da Transparência (2019)",
+       fill="Tipo de transação")
+```
+
+O gráfico já está mais legível, mas longe de ser o ideal. A verdade é que a customização é todo um trabalho de design, onde podemos perder muito tempo nele. O ideal seria não trabalharmos com tantos valores e/ou com nomes tão grandes. Se isso for extremamente necessário, seria importante dedicar algum tempo para melhor configurar os aspectos estéticos do gráfico.
+
+Como mencionado, as funções dos gráficos executam cálculos por trás para montar as visualizações. Mas às vezes não queremos que elas façam esse trabalho (sejam porque são lentas, seja porque não queremos exatamente os cálculos que elas fazem). Por isso juntamos códigos usando *group_by/summarise* do dplyr com funções do ggplot2.
+
+Um exemplo bem simples. Queremos novamente um gráfico de barras por "nome_órgão_superior", mas usando a média das despesas no eixo Y, ao invés da contagem. Escrevemos nosso código de agrupamento e passamos ele para o ggplot2 usando um pipe. Dentro dele seguimos o ritmo normal descrito acima, trocando "geom_bar" por "geom_col" (esta permite definirmos X e Y). Especificamos quem será X e quem será Y.
+
+```{r,cache=TRUE}
+dados_rev %>% 
+  group_by(nome_órgão_superior) %>% 
+  summarise(media=mean(valor_transação)) %>% 
+  ggplot()+
+  geom_col(aes(x=nome_órgão_superior,y=media))+
+  coord_flip()
+```
+
+Muita cautela para não trocar o pipe pelo sinal de adição "+" quando estiver escrevendo um código desses. O sinal não funciona no lugar do pipe e o este não funciona no lugar do adição!!!
+
+Para resolver o problema da ordem citado antes, usamos da mesma abordagem junto com a função *reorder* dentro do "aes" e mais algumas diferenças. Seus argumentos são o objeto a ser reordenado e o que será usado para reordenar. Neste caso o objeto é "nome_órgão_superior" e ele será reordenado pela contagem de observações contido em "contagem". Num outro exemplo abaixo, podemos ordenar uma variável com base num cálculo feito em outra.
+
+Quanto às diferenças, como agora estamos retirando da função do ggplot2 o papel de fazer os cálculos e agrupamentos necessários, eles precisam estar no nosso objeto agrupado que será passado para o ggplot2. Neste caso, nosso agrupamento precisará agrupar por "nome_órgão_superior". Também colocamos "transação" para adicionar uma variável para a cor das barras
+
+```{r,cache=TRUE,message=FALSE}
+dados_rev %>% 
+  group_by(nome_órgão_superior,transação) %>% 
+  summarise(contagem=n()) %>% 
+  ggplot()+ 
+  geom_col(aes(x=reorder(nome_órgão_superior,
+                         contagem),
+               y=contagem,
+               fill=transação))+
+  coord_flip()
+```
+
+Seria possível usar *labs* e *theme* para renomear e customizar o gráfico. O processo é exatamente o mesmo de antes, por isso não o faremos aqui.
+
+## Objetos de configuração
+
+Vimos como criar e customizar gráficos. A fim de automizar e reduzir redundância nos códigos, podemos associar um conjunto de configurações a um objeto a parte e juntá-lo nos nossos códigos do ggplot2 usando o sinal de adição. Isso facilita e uniformiza nossos gráficos. Todos conhecem gráficos que são "a cara do seu autor" (como os do Jairo Nicolau) e isso só é possível usando desses objetos de configuração.
+
+Quando lidamos com a função *theme* e com customizações, vimos que é possível alcançar códigos de muitas linhas  só para definirmos exatamente a aparência de um gráfico. Objetos de configuração externos aos códigos dos gráficos também servem justamente para evitar isso.
+
+Abaixo criamos dois objetos. O primeiro deles contém configurações mais gerais da estética do gráfico usando a função *theme*, já referenciada. Mudamos tamanho das letras de alguns textos e mexemos nas cores das linhas dos eixos e do fundo do gráfico.
+
+```{r}
+objeto_config <- theme(title = element_text(size = 14),
+                       axis.title = element_text(size = 12),
+                       axis.text = element_text(size = 8),
+                       legend.title = element_text(size = 12),
+                       legend.text = element_text(size = 8),
+                       panel.border = element_rect(colour = "black",fill = NA),
+                       panel.background = element_rect(fill = "#f2f4f7"),
+                       panel.grid = element_line(colour = "grey70"))
+```
+
+O segundo contém uma palheta de cores personalizada usando códigos hexadecimais de cores, usando a função *scale_fill_manual*. Usamos ela para definir uma escala de valores (limites, quebras, valores em si) para um tipo de variável no gráfico (x, y, color, fill, linetype, etc.). O *manual* indica que vamos definir manualmente aspectos estéticos de uma variável (neste caso cor, mas bem poderia ser nome dos valores). Neste caso abaixo usamos o argumento "values" para dizer quais serão os "valores de cor" usados, que são os códigos hexadecimais de cor (retirados de sites no internet como [este](https://htmlcolorcodes.com/){target="_blank"}). Amarramos os códigos dentro de uma função *c*, separando-os com vírgula e usando aspas.
+
+```{r}
+objeto_cores <- scale_fill_manual(values = c("#f6b395","#f6e095",
+                                             "#b9f695","#acf5ed",
+                                             "#acbff5"))
+```
+
+Com isso feito, basta conectarmos esses dois objetos nos nossos gráficos usando o sinal de adição. As configurações serão aplicadas sempre da mesma forma.
+
+```{r,message=FALSE,fig.width=11,fig.height=10}
+dados_rev %>% 
+  filter(nome_órgão_superior=="Presidencia da Republica") %>% 
+  group_by(nome_unidade_gestora,transação) %>% 
+  summarise(contagem=n()) %>% 
+  ggplot()+ 
+  geom_col(aes(x=reorder(nome_unidade_gestora,
+                         contagem),
+               y=contagem,
+               fill=transação))+
+  coord_flip()+
+  labs(x="Unidade gestora",
+       y="Número de despesas",
+       fill="Tipo de transação",
+       title="Número de despesas por unidade gestora e tipo de transação")+
+  objeto_config+
+  objeto_cores
+```
+
+O mesmo pode ser feito com nosso boxplot. Filtramos pela presidência e aplicamos a mesma transformação em log feita antes. A reordenação é feita usando um cálculo: reordernamos os órgãos pelo valor em log de forma decrescente considerando a mediana dos categorias (`reorder(nome_unidade_gestora,valor_log,median)`).
+
+```{r,fig.width=11,fig.height=10}
+dados_rev %>% 
+  filter(nome_órgão_superior=="Presidencia da Republica") %>% 
+  mutate(valor_log=log(valor_transação,base=2)) %>% 
+  ggplot()+
+  geom_boxplot(aes(x=reorder(nome_unidade_gestora,valor_log,median),
+                   y=valor_log,
+                   fill=transação))+
+  coord_flip()+
+  labs(x="Unidade gestora",
+       y="Valor da despesa",
+       fill="Tipo de transação",
+       title="Valor das despesas por unidade gestora e tipo de transação")+
+  objeto_config+
+  objeto_cores
+```
+
+Poderíamos trocar a fonte, aplicar negritos, modificar os textos das categorias dos eixos, remover o cinza do fundo. Construção de temas é uma tarefa complexa e realmente válida apenas para quem pretender se estender muito na parte da comunicação dos seus achados, seja produzindo artigos para revistas bem conceituadas, seja para trabalhar na divulgação científica.
+
+## Salvando plots 
+
+Finalmente, para exportar um gráfico clicamos no botão "Export" na aba "Plots" no painel inferior direito. Ela abrirá algumas opções, como salvar como imagem, como PDF ou copiar para o Ctrl+C/Ctrl+V. Clicando em "Save as image" a seguinte janela abre.
+
+![](../imagens/save_plot.png)
+
+"Image format" permite a seleção do formato desejado. "Directory" permite mudar o local onde será salvo o gráfico."File name" é o campo para mudarmos o nome do arquivo. "Width/Height" é uma mudamos a proporção do gráfico (algo muito último quando queremos um gráfico grande e com boa resolução). A caixa logo abaixo permite que o R recalcule automicamente uma dimensão do gráfico caso alteremos a outra para manter a proporção original. Ao concluir as configurações clicamos em "Save". O arquivo estára na pasta desejada no formato e com o nome selecionado.
+
+## Exercícios
+
+### {.tabset .unlisted .unnumbered}
+
+#### Questões
+
+1.    Usando dplyr filtre pelos dados feitos com a UFSCAR (`nome_unidade_gestora=="FUNDACAO UNIVERSIDADE FEDERAL DE SAO CARLOS"`) e plote um boxplot para "nome_portador" e "valor_transação". Use *coord_flip* para melhorar a visualização. Há algo anormal?
+
+2.    (Desafio) Usando *mutate* crie uma nova variável na nossa base para gastos maiores que 1000 reais usando uma condição *ifelse* onde se sim o valor será "Maior que mil" e se não o valor será "Menor que mil" (reveja aula dois se for preciso). Junte esse resultado num gráfico de barras por "nome_órgão_superior" e adicione a variável criada no argumento fill.
+
+-   __Dica: retomem a explicação sobre um *mutate* condicional. Como a métrica que estamos usando é número de despesas podemos usar *geom_bar* ao invés de *geom_col*, como vinhamos fazendo. __
+
+3.    (Desafio) Em métodos quantitativos, é comum encontrarmos relações entre variáveis onde os retornos de uma variável independente é decrescente, ou seja, quanto mais aumentamos X menos Y cresce. Acredita-se que esse é o caso da relação entre escolaridade e salário. Esse tipo de relação é conhecida como logarítmica. Monte um data.frame com duas variáveis que se relacionem dessa forma e plote o gráfico usando *geom_point*.
+
+-   __Dica: no exemplo usado neste material da função *geom_point* fizemos algo parecido mas com uma relação exponencial. Para obter o logarítmo de um número usamos a função *log* e como argumento o número em si.__
+
+#### Soluções
+
+A serem divulgadas posteriormente.
+
+## {.unlisted .unnumbered}
+
+# Final do curso
+
+Se você chegou até aqui, parabéns!! Você acaba de ser iniciado em R e RStudio. A jornada para adquirir maestria na ferramenta é bem mais longa e particular do que esses poucos encontros deram a entender. Agora cabe a cada um de vocês, conhecendo seus objetos de pesquisa, definir quais passos serão tomados.
+
+Lembrem-se: a linguagem R serve para facilitar nossa vida. Seu uso passa pelo processo de identificar um problema (acadêmico ou não, formal ou informal), estudar caminhos e possibilidades, criar soluções e aplicá-las. Isso significa que nunca chegaremos num ponto de total conhecimento da linguagem. As documentações estão aí justamente para permitir o aprendizado. Mesmo aqueles que entendem muito de um tópico nela podem ter dificuldades em outro ou até mesmo na integração do conhecido com o desconhecido. Tenham perseverança!
+
+Até uma próxima!
