@@ -36,9 +36,9 @@ Aproveitem!
 
 # Instruções para entregas
 
-Como demanda da universidade, haverá um processo avaliativo dos alunos. Os exercícios disponibilizados precisam ser entregues até a segunda feira da semana seguinte na respectiva atividade no Classroom. A resolução precisa ser escrita e enviada em um arquivo em código R (ou seja, em um arquivo salvo do editor de texto com o final ".R"). É importante colocar o nome e sobrenome no título do arquivo. Qualquer dúvida não hesitem em me comunicar ou comunicar o monitor Davi.
+Como demanda da universidade, haverá um processo avaliativo dos alunos. Vocês precisam escolher dois dos exercícios de cada encontro e enviar no campo de resposta das respectivas atividades no classroom enumerados. A resolução precisa ser escrita em código R. Qualquer dúvida não hesitem em me comunicar ou comunicar o monitor Davi.
 
-A avaliação dos alunos consistirá num misto entre presença nos encontros, interação e entrega das atividades. Apesar das atividades terem respostas corretas, erros e acertos não contarão pontos, e sim a entrega das atividads. Feedbacks sobre as resoluções poderão eventualmente serem escritos. Após o prazo da entrega, as soluções serão disponibilizadas no material didático ao lado das questões.
+A avaliação dos alunos consistirá na presença nos encontros e na entrega das atividades. Apesar das atividades terem respostas corretas, erros e acertos não contarão pontos, e sim a entrega das atividades. Feedbacks sobre as resoluções poderão eventualmente serem escritos. Após o prazo da entrega, as soluções serão disponibilizadas no material didático ao lado das questões.
 
 # Contato
 
