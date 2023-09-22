@@ -563,7 +563,55 @@ Por fim, usem o Google. Procurem o pacote da função, a própria função ou ai
 
 #### Soluções
 
-A serem divulgadas posteriormente.
+
+1.  
+
+```{r}
+dados1 <- data.frame(nome=c("caio","joão","camila","bruna","denis","joselito"),
+                    cor=c("azul","vermelho","amarelo","azul","azul","amarelo"),
+                    idade=c(18,26,30,13,49,58),
+                    animal_de_estimacao=c(T,T,F,T,F,F))
+```
+
+2.  
+
+```{r}
+dados1[,c(1,4)]
+```
+
+3.  
+
+```{r}
+dados1[3:5,]
+```
+
+4.  
+
+```{r}
+nomes <- c(2,4)
+
+dados1[nomes,]
+```
+
+5.  
+
+```{r}
+(dados1[,3]*365)*24
+```
+
+6.  Há duas formas (por enquanto) de fazer a inserção de uma nova coluna. Podemos escrever os times num objeto a parte e depois unir ao data.frame ou escrever manualmente dentro da função *data.frame*.
+
+```{r}
+#primeira opcao
+times <- c("corinthians","flamengo","fluminense","bahia","santos","palmeiras")
+dados2 <- data.frame(dados1,times)
+
+#segunda opcao
+dados2 <- data.frame(dados1,
+                     times=c("corinthians","flamengo","fluminense","bahia","santos","palmeiras"))
+
+dados2[,c(1,5)]
+```
 
 ##  {.unlisted .unnumbered}
 

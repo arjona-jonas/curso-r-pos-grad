@@ -4,12 +4,14 @@
 #operacoes matemáticas
 
 #operacoes simples
+
 1+1
 4-2
 2*5
 100/10
 
 #potencia
+
 10^2 
 2^2
 
@@ -43,8 +45,13 @@ T == F & T == F #F & F = F
 T != F | T != T #T | F = T
 T == F | F != F #F | F = F
 
+
+
 #funcoes
+seq(from=0,to=10)
+
 seq(from=100,to=125)
+
 seq(100,125)
 
 (seq(100,125)+10)/100
@@ -53,25 +60,28 @@ seq(100,125)+10/100
 
 ?seq
 
+?seq
 
 #objetos
 
 #objeto de texto
-objeto <- c("a","b","c","d")
+
+objeto <- c("a","b","c","d","e","f",1)
+
 objeto
 
 #objeto de números
 objeto_numero <- c(3,4,1,2)
-objeto_numero
 
 #objeto misto (errado)
 objeto_misto <- c(a,5,b,9,c,1)
 
 #objeto misto (correto)
 objeto_misto <- c("a",5,"b",9,"c",1)
+objeto_misto
 
 #print dos dois objetos criados separados
-print(c(objeto,objeto_numero))
+print(c(objeto,objeto_numero,10,seq(0,10)))
 
 
 
@@ -83,6 +93,7 @@ sequencia_par <- seq(0,10,2)
 sequencia_par
 
 objeto_numero+2
+
 sequencia_par+5
 
 #tipos de dados
@@ -109,7 +120,7 @@ class(objeto_numero)
 objeto_numero+2
 
 #logical
-objeto_logical <- c(T,F,T,T,F,F)
+objeto_logical <- c(TRUE,F,T,T,F,F)
 objeto_logical
 
 class(objeto_logical)
@@ -121,9 +132,10 @@ as.factor(objeto_character)
 class(as.factor(objeto_character))
 
 #numeric para character
-as.character(objeto_numeric)
-class(as.character(objeto_numeric))
+as.character(objeto_numero)
+class(as.character(objeto_numero))
 
+#CORRIGIR
 #factor para numeric
 as.numeric(objeto_factor)
 class(as.numeric(objeto_factor))
@@ -136,13 +148,13 @@ as.numeric(objeto_logical)
 class(as.numeric(objeto_logical))
 
 #indices
-objeto_character[3]
+objeto_character[1]
 
-objeto_factor[1]
+objeto_factor[c(3,1)]
 
-objeto_numeric[1:4]
+objeto_numero[1:4]
 
-objeto_logical[4:6]
+objeto_logical[c(1,6)]
 
 #OBJETOS MULTIDIMENSIONAIS
 #matrizes
@@ -174,11 +186,13 @@ data.frame(alunos,portugues,faltas=c(1,2,3,4))
 data.frame(alunos,portugues,faltas=1)
 
 #refenciando colunas dentro da propria função
-data.frame(alunos,portugues,nota_com_ponto_extra=portugues+1)
+data.frame(alunos,portugues,
+           nota_com_ponto_extra=portugues+1)
 
 
 #associando objeto
 df <- data.frame(alunos,portugues,faltas=c(1,2,3,4))
+View(df)
 
 #indice em data.frames
 df[1,1:3]
@@ -200,12 +214,17 @@ df[c(2,3),c(2,1)]
 #objeto como indice
 indice <- c(1:3)
 
-df[indice,] #TODAS AS LINHAS DAS LINHAS COLUNAS 1 ATE 3
-df[,indice] #TODAS AS COLUNAS DAS LINHAS 1 ATE 3
+df[indice,] #TODAS AS COLUNAS DAS LINHAS COLUNAS 1 ATE 3
+df[,indice] #TODAS AS LINHAS DAS COLUNAS 1 ATE 3
 df[indice,indice] #LINHAS 1 ATE 3 DAS COLUNAS 1 ATE 3
 
+?paste
+
+help(paste)
 
 #exercícíos
+
+# esse é o comentário do meu código
 
 #1.Crie um data.frame contendo dados fictícios. Coloque ao menos
 #6 linhas com: nome, cor favorita, idade e se possui alguma animal
