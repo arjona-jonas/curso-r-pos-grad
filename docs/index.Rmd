@@ -781,7 +781,7 @@ Essa função seleciona colunas usando seus índices ou apenas seus nomes. Tamb�
 
 Quando queremos manter ou remover mais de uma coluna e armazenamos os índices ou nomes num objeto, precisamos fechar o objeto dentro de uma função auxiliar chamda *all_of*. Essa é uma particularidade recente do dplyr e não tem implicações significativas neste caso.
 
-###  {.tabset .tabset-pills .unlisted .unnumbered}
+### {.tabset .tabset-pills .unlisted .unnumbered}
 
 #### Selecionando colunas não usando objeto
 
@@ -811,7 +811,7 @@ vars <- c(4:15)
 head(select(dados,-all_of(vars)),n=3)
 ```
 
-##  {.unlisted .unnumbered}
+### {.unlisted .unnumbered}
 
 Podemos também usar os nomes das colunas para fazer esse tipo de manipulação. O mesmo processo de antes pode ser feito: com ou sem objetos. Perceba que não fechamos os nomes das colunas com aspas quando colocamos eles direto no *select*, enquanto que na abordagem que usamos o objeto precisamos colocar aspas já no objeto. Novamente, uma particularidade do pacote. É preferível usar os índices ao invés dos nomes.
 
@@ -864,7 +864,7 @@ Há um cenário mais complexo ainda: duas condições juntas OU outras duas cond
 head(filter(dados, (nome_órgão_superior=="Presidência da República" & valor_transação >10000) | nome_órgão_superior=="Ministério da Economia" & transação=="SAQUE CASH/ATM BB"),n=3)
 ```
 
-##  {.unlisted .unnumbered}
+###  {.unlisted .unnumbered}
 
 Por fim, temos o filtro por contenção. Nele usamos um objeto contendo um conjunto de valores e o operador lógico de contenção *%in%* (porcentagem-in-porcentagem). Por exemplo, o código abaixo cria um objeto contém dois órgãos a serem considerados () e aplica um filtro selecionando despesas feitas pelos órgãos superiores com nomes que estejam contidos dentro de um conjunto de nomes (nosso objeto criado previamente, no caso). Lemos um filtro desses como: "filtre observações do data.frame em que a variável/coluna 'nome_órgão_superior' esteja contido em *objeto criado*".
 
