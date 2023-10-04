@@ -1085,7 +1085,66 @@ Vimos aqui que muito dos processos do dplyr dependem de como estão escritas par
 
 #### Soluções
 
-A serem divulgadas posteriormente.
+1.
+
+Para entender o que cada sigla significa, use [este site](https://portaldatransparencia.gov.br/pagina-interna/603411-dicionario-de-dados-cpgf).
+```{r}
+dados %>% 
+  group_by(transação) %>% 
+  summarise(contagem=n(),
+            soma=sum(valor_transação),
+            media=mean(valor_transação),
+            mediana=median(valor_transação),
+            min=min(valor_transação),
+            max=max(valor_transação))
+```
+
+2.
+
+```{r}
+dados %>% 
+  filter(nome_favorecido=="HAVAN LOJAS DE DEPARTAMENTOS LTDA")
+```
+
+3.
+
+```{r}
+dados %>% 
+  filter(mês_extrato==8) %>% 
+  group_by(data_transação) %>% 
+  summarise(soma=sum(valor_transação)) %>% 
+  arrange(soma)
+```
+O dia 24 de Junho de 2019 foi o que teve o menor valor total de despesas.
+
+4.
+
+Para fazer isso, iremos usar um *filter* que selecionará apenas os casos em que o valor da despesa é igual ao valor máximo de despesas apresentado nos nossos dados, ou seja, onde `valor_transação==max(valor_transação)`.
+```{r}
+dados %>% 
+  filter(valor_transação==max(valor_transação))
+```
+A maior despesa foi feita pela Secretaria Especial de Administração da Presidência, no valor de R$97.684,15 e é de caráter sigiloso.
+
+5.
+
+```{r}
+dados %>% 
+  mutate(valor_corrigido=valor_transação*1.64) %>% 
+  arrange(desc(valor_corrigido))
+```
+O valor de 97.684,15 reais corrigido valia 160.202 reais ao final de 2022.
+
+6. 
+
+```{r}
+dados %>% 
+  filter(nome_órgão=="Fundação Universidade Federal de São Carlos") %>% 
+  arrange(desc(valor_transação)) %>% 
+  select(nome_órgão,nome_portador,nome_favorecido,valor_transação) %>% 
+  head()
+```
+A maior despesa custou 1.649,99 reais.
 
 ##  {.unlisted .unnumbered}
 

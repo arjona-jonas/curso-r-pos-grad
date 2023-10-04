@@ -12,10 +12,15 @@ getwd()
 #certificar-se que o (wd) está selecionado
 #corretamente e que o arquivo .csv está
 #na pasta correta
-dados <- read.table("cartao_bolsonaro2019.csv",
+
+dados <- read.csv("cartao_bolsonaro2019.csv",
                     sep=",",dec=".",
                     header=TRUE,
-                    fileEncoding = "latin1")
+                    encoding = "latin1")
+
+library(readr)
+tst <- read_csv("cartao_bolsonaro2019.csv", 
+         locale = locale(encoding = "WINDOWS-1252"))
 
 #Ver dados
 View(dados)
